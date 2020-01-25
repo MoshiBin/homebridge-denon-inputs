@@ -1,0 +1,24 @@
+{
+  "name": "homebridge-denon-inputs",
+  "version": "1.0.0",
+  "description": "Homebridge plugin for Denon (and marantz) receivers that exposes the receiver as a TV, allowing you to switch inputs from Home.app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MoshiBin/homebridge-denon-inputs.git"
+  },
+  "keywords": [
+    "homebridge-plugin",
+    "denon",
+    "marantz"
+  ],
+  "author": "Moshi Binyamini",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MoshiBin/homebridge-denon-inputs/issues"
+  },
+  "homepage": "https://github.com/MoshiBin/homebridge-denon-inputs#readme"
+}
