@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/MoshiBin/homebridge-denon-inputs/issues"
   },
-  "homepage": "https://github.com/MoshiBin/homebridge-denon-inputs#readme"
+  "homepage": "https://github.com/MoshiBin/homebridge-denon-inputs#readme",
+  "dependencies": {
+    "telnet-client": "^1.2.11"
+  }
 }

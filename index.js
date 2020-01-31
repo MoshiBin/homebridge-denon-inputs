@@ -1,4 +1,5 @@
 var Service, Characteristic;
+var Telnet = require("telnet-client");
 
 
 module.exports = function (homebridge) {
@@ -16,7 +17,9 @@ class DenonAccessory {
         this.name = config["name"];
         this.tvVolume = 0;
         this.inputs = config["inputs"];
+        this.address = config["address"];
         this.inputObjects = {};
+        this.connection = new Telnet();
 
         // Prepare TV Service
         this.tvService = new Service.Television(this.name, "tvService");
@@ -60,7 +63,29 @@ class DenonAccessory {
     }
 
     getPowerState(callback) {
-        this.log.error("Getting state");
+        this.log.debug("Getting state");
+        var connection = new Telnet();
+        var plugin = this;
+        connection.connect({
+            host: this.address,
+            irs: "\r",
+            debug: true,
+            negotiationMandatory: false
+        }).then(function(shell) {
+            connection.send("PW?").then(function(res) {
+                res = res.trim();
+                if (res == "PWSTANDBY") {
+                    return false;
+                } else if (res == "PWON") {
+                    return true;
+                } else {
+                    plugin.log.error("Unknown power state: %s", res);
+                    return false;
+                }
+            }).then(function(s) {
+                connection.end();
+            });
+        });
         callback(null, true);
 
     }
